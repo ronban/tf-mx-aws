@@ -1,0 +1,12 @@
+controller:
+    replicaCount: 1
+    service:
+      type: LoadBalancer
+      externalTrafficPolicy: "Cluster"
+      annotations:
+        # AWS Load Balancer Controller Annotations
+        alb.ingress.kubernetes.io/scheme: internal
+        alb.ingress.kubernetes.io/target-type: internal-facing
+        kubernetes.io/ingress.class: alb
+        alb.ingress.kubernetes.io/backend-protocol: HTTP
+        alb.ingress.kubernetes.io/subnets: ${private_subnet_ids}
